@@ -16,6 +16,7 @@ namespace wpfGenericHost
             _host = new HostBuilder()
                             .ConfigureServices((HostBuilderContext, services) =>
                             {
+                                services.AddSingleton<ITextService>(provider => new TextService("Hello WPF .NET Core 3.0!"));
                                 services.AddSingleton<MainWindow>();
                             })
                             .Build();
