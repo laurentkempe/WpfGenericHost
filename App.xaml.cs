@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using System.Windows;
 
 namespace wpfGenericHost
@@ -12,14 +13,19 @@ namespace wpfGenericHost
 
         public App()
         {
-            _host = new HostBuilder().Build();
+            _host = new HostBuilder()
+                            .ConfigureServices((HostBuilderContext, services) =>
+                            {
+                                services.AddSingleton<MainWindow>();
+                            })
+                            .Build();
         }
 
         private async void Application_Startup(object sender, StartupEventArgs e)
         {
             await _host.StartAsync();
 
-            var mainWindow = new MainWindow();
+            var mainWindow = _host.Services.GetService<MainWindow>();
             mainWindow.Show();
         }
 
