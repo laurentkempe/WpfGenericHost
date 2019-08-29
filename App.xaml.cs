@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows;
 
 namespace wpfGenericHost
@@ -18,6 +13,11 @@ namespace wpfGenericHost
             var mainWindow = new MainWindow();
             mainWindow.Show();
 
+            await Task.FromResult(1);
+        }
+
+        private async void Application_Exit(object sender, ExitEventArgs e)
+        {
             await Task.FromResult(1);
         }
     }
