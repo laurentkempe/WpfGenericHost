@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Hosting;
-using System.IO;
 using System.Windows;
 
 namespace wpfGenericHost
@@ -11,7 +11,7 @@ namespace wpfGenericHost
     /// </summary>
     public partial class App : Application
     {
-        private readonly IHost _host;
+        private IHost _host;
         private readonly Settings _settings;
 
 
@@ -34,6 +34,10 @@ namespace wpfGenericHost
                                 services.AddSingleton<ITextService, TextService>();
                                 services.AddSingleton<MainWindow>();
                             })
+                            .ConfigureLogging(logging =>
+                            {
+                                logging.AddConsole();
+                            })
                             .Build();
         }
 
@@ -48,6 +52,9 @@ namespace wpfGenericHost
         private async void Application_Exit(object sender, ExitEventArgs e)
         {
             await _host.StopAsync();
+
+            _host.Dispose();
+            _host = null;
         }
     }
 }
