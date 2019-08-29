@@ -1,5 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.IO;
 using System.Windows;
 
 namespace wpfGenericHost
@@ -10,13 +12,26 @@ namespace wpfGenericHost
     public partial class App : Application
     {
         private readonly IHost _host;
+        private readonly Settings _settings;
+
 
         public App()
         {
+            _settings = new Settings();
+
             _host = new HostBuilder()
+                            .ConfigureAppConfiguration((hostBuilderContext, configurationBuilder) =>
+                            {
+                                configurationBuilder.SetBasePath(hostBuilderContext.HostingEnvironment.ContentRootPath);
+                                configurationBuilder.AddJsonFile("appsettings.json", optional: false);
+
+                                IConfigurationRoot configuration = configurationBuilder.Build();
+                                configuration.Bind(_settings);
+                            })
                             .ConfigureServices((HostBuilderContext, services) =>
                             {
-                                services.AddSingleton<ITextService>(provider => new TextService("Hello WPF .NET Core 3.0!"));
+                                services.AddSingleton<Settings>(_settings);
+                                services.AddSingleton<ITextService, TextService>();
                                 services.AddSingleton<MainWindow>();
                             })
                             .Build();

@@ -4,9 +4,9 @@ namespace wpfGenericHost
     {
         private string _text;
 
-        public TextService(string text)
+        public TextService(Settings settings)
         {
-            _text = text;
+            _text = settings.Text;
         }
 
         public string GetText()
