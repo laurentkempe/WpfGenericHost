@@ -15,6 +15,9 @@ namespace wpfGenericHost
     {
         private async void Application_Startup(object sender, StartupEventArgs e)
         {
+            var mainWindow = new MainWindow();
+            mainWindow.Show();
+
             await Task.FromResult(1);
         }
     }
