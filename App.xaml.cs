@@ -20,17 +20,15 @@ namespace wpfGenericHost
             _settings = new Settings();
 
             _host = new HostBuilder()
-                            .ConfigureAppConfiguration((hostBuilderContext, configurationBuilder) =>
+                            .ConfigureAppConfiguration((context, configurationBuilder) =>
                             {
-                                configurationBuilder.SetBasePath(hostBuilderContext.HostingEnvironment.ContentRootPath);
+                                configurationBuilder.SetBasePath(context.HostingEnvironment.ContentRootPath);
                                 configurationBuilder.AddJsonFile("appsettings.json", optional: false);
-
-                                IConfigurationRoot configuration = configurationBuilder.Build();
-                                configuration.Bind(_settings);
                             })
-                            .ConfigureServices((HostBuilderContext, services) =>
+                            .ConfigureServices((context, services) =>
                             {
-                                services.AddSingleton<Settings>(_settings);
+                                services.Configure<Settings>(context.Configuration);
+
                                 services.AddSingleton<ITextService, TextService>();
                                 services.AddSingleton<MainWindow>();
                             })

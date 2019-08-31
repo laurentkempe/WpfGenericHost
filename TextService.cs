@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace wpfGenericHost
 {
@@ -6,11 +7,11 @@ namespace wpfGenericHost
     {
         private string _text;
 
-        public TextService(Settings settings, ILogger<TextService> logger)
+        public TextService(IOptions<Settings> options, ILogger<TextService> logger)
         {
-            _text = settings.Text;
+            _text = options.Value.Text;
 
-            logger.LogInformation($"Text read from settings: '{settings.Text}'");
+            logger.LogInformation($"Text read from settings: '{options.Value.Text}'");
         }
 
         public string GetText()
