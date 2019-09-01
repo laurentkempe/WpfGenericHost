@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Hosting;
 using System.Windows;
+using System;
 
 namespace wpfGenericHost
 {
@@ -49,10 +50,10 @@ namespace wpfGenericHost
 
         private async void Application_Exit(object sender, ExitEventArgs e)
         {
-            await _host.StopAsync();
-
-            _host.Dispose();
-            _host = null;
+            using (_host)
+            {
+                await _host.StopAsync(TimeSpan.FromSeconds(5));
+            }
         }
     }
 }
