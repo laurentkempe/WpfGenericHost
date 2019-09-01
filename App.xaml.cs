@@ -47,8 +47,8 @@ namespace wpfGenericHost
 
         private async void Application_Startup(object sender, StartupEventArgs e)
         {
-            await _host.StartAsync();
             await _webApiHost.StartAsync();
+            await _host.StartAsync();
 
             var mainWindow = _host.Services.GetService<MainWindow>();
             mainWindow.Show();
@@ -57,10 +57,12 @@ namespace wpfGenericHost
         private async void Application_Exit(object sender, ExitEventArgs e)
         {
             using (_host)
-            using (_webApiHost)
             {
-                await _host.StopAsync(TimeSpan.FromSeconds(5));
-                await _webApiHost.StopAsync(TimeSpan.FromSeconds(5));
+                using (_webApiHost)
+                {
+                    await _webApiHost.StopAsync(TimeSpan.FromSeconds(5));
+                    await _host.StopAsync(TimeSpan.FromSeconds(5));
+                }
             }
         }
     }
