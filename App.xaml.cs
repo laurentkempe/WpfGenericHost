@@ -13,13 +13,9 @@ namespace wpfGenericHost
     public partial class App : Application
     {
         private IHost _host;
-        private readonly Settings _settings;
-
 
         public App()
         {
-            _settings = new Settings();
-
             _host = new HostBuilder()
                             .ConfigureAppConfiguration((context, configurationBuilder) =>
                             {
