@@ -5,7 +5,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Hosting;
 using System.Windows;
 using System;
-using System.Threading.Tasks;
 
 namespace wpfGenericHost
 {
@@ -29,6 +28,7 @@ namespace wpfGenericHost
                                 services.Configure<Settings>(context.Configuration);
 
                                 services.AddSingleton<ITextService, TextService>();
+                                services.AddSingleton<MainWindowViewModel>();
                                 services.AddSingleton<MainWindow>();
                             })
                             .ConfigureLogging(logging =>

@@ -7,13 +7,14 @@
         mc:Ignorable="d"
         Loaded="Window_Loaded"
         Closed="Window_Closed"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        d:DataContext="{d:DesignInstance local:MainWindowViewModel}">
      <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="9*" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
-        <Label Name="Label" HorizontalAlignment="Center" VerticalAlignment="Center"
+        <Label Content="{Binding Text}" HorizontalAlignment="Center" VerticalAlignment="Center"
                FontSize="40" />
     </Grid>
 </Window>

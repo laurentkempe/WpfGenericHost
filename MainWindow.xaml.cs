@@ -13,7 +13,7 @@ namespace wpfGenericHost
     {
         private readonly IHost _webApiHost;
 
-        public MainWindow(ITextService textService)
+        public MainWindow(MainWindowViewModel mainWindowViewModel)
         {
             _webApiHost = Host.CreateDefaultBuilder()
                                     .ConfigureWebHostDefaults(webBuilder =>
@@ -24,7 +24,7 @@ namespace wpfGenericHost
 
             InitializeComponent();
 
-            Label.Content = textService.GetText();
+            DataContext = mainWindowViewModel;
         }
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
