@@ -20,6 +20,12 @@ namespace wpfGenericHost
                                     {
                                         webBuilder.UseStartup<Startup>();
                                     })
+                                    .ConfigureServices((context, services) =>
+                                    {
+                                        services.Configure<Settings>(context.Configuration);
+
+                                        services.AddSingleton(mainWindowViewModel);
+                                    })
                                     .Build();
 
             InitializeComponent();

@@ -16,15 +16,19 @@ namespace wpfGenericHost.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly MainWindowViewModel _viewModel;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, MainWindowViewModel viewModel)
         {
             _logger = logger;
+            _viewModel = viewModel;
         }
 
-        [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        [HttpGet("{text}")]
+        public IEnumerable<WeatherForecast> Get(string text)
         {
+            _viewModel.Text = text;
+            
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
