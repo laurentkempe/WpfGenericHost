@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:wpfGenericHost"
         mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        Closed="Window_Closed"
         Title="MainWindow" Height="450" Width="800">
      <Grid>
         <Grid.RowDefinitions>

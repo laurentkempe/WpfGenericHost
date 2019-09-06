@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Hosting;
 using System.Windows;
 using System;
+using System.Threading.Tasks;
 
 namespace wpfGenericHost
 {
@@ -13,8 +14,7 @@ namespace wpfGenericHost
     /// </summary>
     public partial class App : Application
     {
-        private IHost _host;
-        private IHost _webApiHost;
+        private readonly IHost _host;
 
         public App()
         {
@@ -36,18 +36,10 @@ namespace wpfGenericHost
                                 logging.AddConsole();
                             })
                             .Build();
-
-            _webApiHost = Host.CreateDefaultBuilder()
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                })
-                .Build();
         }
 
         private async void Application_Startup(object sender, StartupEventArgs e)
         {
-            await _webApiHost.StartAsync();
             await _host.StartAsync();
 
             var mainWindow = _host.Services.GetService<MainWindow>();
@@ -58,11 +50,7 @@ namespace wpfGenericHost
         {
             using (_host)
             {
-                using (_webApiHost)
-                {
-                    await _webApiHost.StopAsync(TimeSpan.FromSeconds(5));
-                    await _host.StopAsync(TimeSpan.FromSeconds(5));
-                }
+                await _host.StopAsync(TimeSpan.FromSeconds(5));
             }
         }
     }
