@@ -1,4 +1,3 @@
-using System;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
@@ -12,7 +11,7 @@ internal sealed class TextService : ITextService
     {
         _text = options.Value.Text;
 
-        logger.LogInformation($"Text read from settings: '{options.Value.Text}'");
+        logger.LogInformation("Text read from settings: \'{ValueText}\'", options.Value.Text);
     }
 
     public string GetText()
