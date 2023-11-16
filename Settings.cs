@@ -1,4 +1,4 @@
-public class Settings
+public sealed class Settings
 {
     public string Text { get; set; }
 }
