@@ -1,7 +1,6 @@
-namespace wpfGenericHost
+namespace wpfGenericHost;
+
+public interface ITextService
 {
-    public interface ITextService
-    {
-        string GetText();
-    }
+    string GetText();
 }

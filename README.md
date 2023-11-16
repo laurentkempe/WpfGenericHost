@@ -1,5 +1,5 @@
 # WpfGenericHost
-dotnet core 3.0 updated to .NET 5 Wpf application using [.NET Generic Host](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-3.0)
+dotnet core 3.0 updated to .NET 8 Wpf application using [.NET Generic Host](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-3.0)
 
 ## Blog post
 
