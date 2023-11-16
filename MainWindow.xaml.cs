@@ -1,16 +1,14 @@
-﻿using System.Windows;
-
-namespace wpfGenericHost;
+﻿namespace wpfGenericHost;
 
 /// <summary>
-/// Interaction logic for MainWindow.xaml
+///     Interaction logic for MainWindow.xaml
 /// </summary>
 public sealed partial class MainWindow
 {
     public MainWindow(ITextService textService)
     {
-            InitializeComponent();
+        InitializeComponent();
 
-            Label.Content = textService.GetText();
-        }
+        Label.Content = textService.GetText();
+    }
 }
