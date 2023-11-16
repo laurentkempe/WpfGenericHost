@@ -6,7 +6,7 @@ namespace wpfGenericHost;
 
 sealed class TextService : ITextService
 {
-    private string _text;
+    private readonly string _text;
 
     public TextService(IOptions<Settings> options, ILogger<TextService> logger)
     {
