@@ -4,7 +4,7 @@ using Microsoft.Extensions.Options;
 
 namespace wpfGenericHost;
 
-sealed class TextService : ITextService
+internal sealed class TextService : ITextService
 {
     private readonly string _text;
 
