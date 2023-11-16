@@ -10,7 +10,7 @@ namespace wpfGenericHost;
 /// <summary>
 /// Interaction logic for App.xaml
 /// </summary>
-public sealed partial class App : Application
+public sealed partial class App
 {
     private readonly IHost _host;
 

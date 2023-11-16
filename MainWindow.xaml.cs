@@ -5,7 +5,7 @@ namespace wpfGenericHost;
 /// <summary>
 /// Interaction logic for MainWindow.xaml
 /// </summary>
-public sealed partial class MainWindow : Window
+public sealed partial class MainWindow
 {
     public MainWindow(ITextService textService)
     {
