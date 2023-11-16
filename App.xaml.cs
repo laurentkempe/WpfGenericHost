@@ -1,14 +1,14 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Hosting;
+﻿using System;
 using System.Windows;
-using System;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace wpfGenericHost;
 
 /// <summary>
-/// Interaction logic for App.xaml
+///     Interaction logic for App.xaml
 /// </summary>
 public sealed partial class App
 {
@@ -29,10 +29,7 @@ public sealed partial class App
                 services.AddSingleton<ITextService, TextService>();
                 services.AddSingleton<MainWindow>();
             })
-            .ConfigureLogging(logging =>
-            {
-                logging.AddConsole();
-            })
+            .ConfigureLogging(logging => { logging.AddConsole(); })
             .Build();
     }
 
